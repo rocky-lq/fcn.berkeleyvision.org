@@ -11,7 +11,7 @@ try:
 except:
     pass
 
-weights = '../voc-fcn16s/voc-fcn16s.caffemodel'
+weights = '../voc-fcn16s/fcn16s-heavy-pascal.caffemodel'
 
 # init
 caffe.set_device(int(sys.argv[1]))
@@ -25,7 +25,7 @@ interp_layers = [k for k in solver.net.params.keys() if 'up' in k]
 surgery.interp(solver.net, interp_layers)
 
 # scoring
-val = np.loadtxt('../data/segvalid11.txt', dtype=str)
+val = np.loadtxt('../data/pascal/person.txt', dtype=str)
 
 for _ in range(25):
     solver.step(4000)
